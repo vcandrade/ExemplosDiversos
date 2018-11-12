@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package exemplos.popularJTable;
+package popularJTable;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -83,11 +83,11 @@ public class Principal extends javax.swing.JFrame {
 
         } catch (FileNotFoundException ex) {
 
-            Logger.getLogger(exemplos.popularComboBox.Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(popularComboBox.Principal.class.getName()).log(Level.SEVERE, null, ex);
 
         } catch (IOException ex) {
 
-            Logger.getLogger(exemplos.popularComboBox.Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(popularComboBox.Principal.class.getName()).log(Level.SEVERE, null, ex);
 
         } finally {
 

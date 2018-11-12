@@ -1,4 +1,4 @@
-package exemplos.radiobutton;
+package radiobutton;
 
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
