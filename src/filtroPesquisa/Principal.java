@@ -30,9 +30,9 @@ public class Principal extends javax.swing.JFrame {
 
         this.buscarCidades = true;
 
-        this.lista.setVisible(false);
+        this.lstSugestoes.setVisible(false);
         modelo = new DefaultListModel();
-        lista.setModel(modelo);
+        lstSugestoes.setModel(modelo);
     }
 
     public void listarCidades() {
@@ -50,7 +50,7 @@ public class Principal extends javax.swing.JFrame {
 
                 //verifica se há uma ocorrência da busca no documento das cidades.
                 //ambas as strings são transformadas para maiúsculo para não ter problema nas pesquisa
-                if (leitura.toUpperCase().contains(this.txBusca.getText().toUpperCase())) {
+                if (leitura.toUpperCase().contains(this.txtPesquisa.getText().toUpperCase())) {
 
                     this.modelo.addElement(leitura);
                 }
@@ -60,13 +60,13 @@ public class Principal extends javax.swing.JFrame {
 
             documento.close();
           
-            if (this.txBusca.getText().length() > 0) {
+            if (this.txtPesquisa.getText().length() > 0) {
 
-                lista.setVisible(true);
+                lstSugestoes.setVisible(true);
 
             } else {
 
-                lista.setVisible(false);
+                lstSugestoes.setVisible(false);
             }
 
         } catch (FileNotFoundException ex) {
@@ -81,8 +81,9 @@ public class Principal extends javax.swing.JFrame {
 
     public void selecionarCidade() {
 
-        String cidade = lista.getSelectedValue();
-        this.txCidade.setText(cidade);
+        String cidade = lstSugestoes.getSelectedValue();
+        this.txtCidade.setText(cidade);
+        this.txtPesquisa.setText(cidade);
     }
 
     /**
@@ -94,78 +95,56 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane2 = new javax.swing.JLayeredPane();
-        txBusca = new javax.swing.JTextField();
-        lista = new javax.swing.JList<>();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        txCidade = new javax.swing.JTextField();
+        layerExterno = new javax.swing.JLayeredPane();
+        layerInterno = new javax.swing.JLayeredPane();
+        txtPesquisa = new javax.swing.JTextField();
+        lstSugestoes = new javax.swing.JList<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtCidade = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Busca de Cidades");
 
-        jLayeredPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        layerExterno.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txBusca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txBusca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txBusca.addKeyListener(new java.awt.event.KeyAdapter() {
+        layerInterno.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtPesquisa.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesquisaActionPerformed(evt);
+            }
+        });
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txBuscaKeyReleased(evt);
+                txtPesquisaKeyReleased(evt);
             }
         });
-        jLayeredPane2.add(txBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 35, 380, 36));
+        layerInterno.add(txtPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 430, 60));
 
-        lista.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lista.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listaMouseClicked(evt);
+        lstSugestoes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lstSugestoes.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lstSugestoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lstSugestoesMouseReleased(evt);
             }
         });
-        jLayeredPane2.add(lista, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 380, 144));
+        layerInterno.add(lstSugestoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 430, 160));
 
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
-        );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Busca:");
+        layerInterno.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jLayeredPane2.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, 300));
+        layerExterno.add(layerInterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 29, 500, 300));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados Pessoais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(51, 51, 255))); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel2.setText("Cidade:");
+        layerExterno.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 203, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel6.setText("Cidade:");
-
-        txCidade.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(txCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(94, Short.MAX_VALUE))
-        );
-
-        jLayeredPane2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        txtCidade.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtCidade.setForeground(new java.awt.Color(51, 51, 255));
+        layerExterno.add(txtCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 203, 345, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,56 +152,36 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(layerExterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(layerExterno, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void listaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaMouseClicked
+    private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
 
-        selecionarCidade();
-        lista.setVisible(false);
-    }//GEN-LAST:event_listaMouseClicked
+        this.listarCidades();
+        
+    }//GEN-LAST:event_txtPesquisaKeyReleased
 
-    private void txBuscaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txBuscaKeyReleased
+    private void lstSugestoesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstSugestoesMouseReleased
 
-        //se pressionar a tecla ENTER, pegará o primeiro elemento
-        if (evt.getKeyCode() == 10) {
+        this.selecionarCidade();
+        this.lstSugestoes.setVisible(false);
+        
+    }//GEN-LAST:event_lstSugestoesMouseReleased
 
-            String cidade = modelo.getElementAt(0).toString();
-            this.txCidade.setText(cidade);
-
-            lista.setVisible(false);
-
-            this.buscarCidades = false;
-
-            //senão, se pressionar a tecla ESC, a pesquisa é cancelada e o campo limpo
-        } else if(evt.getKeyCode() == 27) {
-
-            this.txBusca.setText("");
-            lista.setVisible(false);
-
-            this.buscarCidades = false;
-        }
-
-        if (this.buscarCidades) {
-
-            listarCidades();
-
-        } else {
-
-            this.buscarCidades = true;
-        }
-    }//GEN-LAST:event_txBuscaKeyReleased
+    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,12 +219,12 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JList<String> lista;
-    private javax.swing.JTextField txBusca;
-    private javax.swing.JTextField txCidade;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLayeredPane layerExterno;
+    private javax.swing.JLayeredPane layerInterno;
+    private javax.swing.JList<String> lstSugestoes;
+    private javax.swing.JLabel txtCidade;
+    private javax.swing.JTextField txtPesquisa;
     // End of variables declaration//GEN-END:variables
 }
